@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>照片上传</title>
+    <link rel="stylesheet" href="css/webuploader.css">
+
+</head>
+<body>
+<div class="main">
+    <div class="content-area" id="pics_show" style="padding:30px 0">?</div>
+</div>
+
+</body>
+<script src="js/jquery-2.1.1.min.js"></script>
+<script src="js/webuploader.html5only.min.js"></script>
+<script src="js/uploadPic.js"></script>
+<script>
+    $(function(){
+        addPics();      //添加图片
+    });
+    function addPics(){
+        $('#pics_show').diyUpload({
+            buttonText : '选择图片文件',
+            method: "post",
+            fileVal: "files",   //图片在form中的name名称
+            //url: basePath + '/zpfjFjxxb/uploadZp',//上传图片后台路径
+            formData: {         //额外参数
+                //lyid : lyid,
+                //lyms : lyms,
+                //lybm : lybm
+            },
+            success:function( data ) {
+                console.log( data );
+            },
+            error:function( err ) {
+                console.log( err );
+            },
+            //上传完成打开编辑页面
+            finish : function(){
+                //var tab_url = basePath + '/zpfjFjxxb/edit?lyid='+lyid+'&lybm='+lybm+'&lyms='+lyms;
+                //location.href = tab_url;
+            },
+            filJoin : function(file){
+                //console.log('文件队列事件:',file);
+            },
+            //最大上传的文件数量, 总文件大小,单个文件大小(单位字节);
+            fileNumLimit: 20,
+            fileSizeLimit: 500000 * 1024,
+            fileSingleSizeLimit: 50000 * 1024
+        });
+
+    }
+</script>
+</html>
